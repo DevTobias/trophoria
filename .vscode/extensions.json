@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "aaron-bond.better-comments",
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-german",
+    "EditorConfig.EditorConfig",
+    "IronGeek.vscode-env",
+    "dbaeumer.vscode-eslint",
+    "pomber.git-file-history",
+    "esbenp.prettier-vscode",
+    "rvest.vs-code-prettier-eslint"
+  ]
+}
