@@ -1,0 +1,11 @@
+{
+  "name": "@modules/prettier-config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "prettier": "^2.8.8"
+  }
+}

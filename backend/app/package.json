@@ -1,17 +1,21 @@
 {
   "name": "trophoria",
-  "module": "index.ts",
-  "type": "module",
   "scripts": {
-    "start": "bun run --watch src/index.ts"
+    "start": "bun run --watch src/index.ts",
+    "lint": "tsc & prettier --ignore-path ../.gitignore --write --check . & eslint ."
   },
   "dependencies": {
     "elysia": "^0.6.3"
   },
   "devDependencies": {
+    "@modules/eslint-config": "*",
+    "@modules/prettier-config": "*",
     "bun-types": "latest"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+  "prettier": "@modules/prettier-config",
+  "eslintConfig": {
+    "extends": [
+      "@modules/eslint-config"
+    ]
   }
 }

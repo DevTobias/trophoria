@@ -30,7 +30,7 @@
   // ESLint
   "eslint.validate": ["javascript", "typescript"],
   "eslint.probe": ["javascript", "typescript"],
-  // "eslint.workingDirectories": ["frontend/app", "backend/app"],
+  "eslint.workingDirectories": ["backend/app"],
 
   //! Formatters
   "[json][jsonc][html]": {
