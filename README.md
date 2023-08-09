@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/devtobias/trophoria">
-    <img src="https://github.com/devtobias/trophoria/.github/blob/main/brand/brand.png" width="500" alt="trophoria logo" />
+    <img src="https://raw.githubusercontent.com/devtobias/trophoria/main/.github/brand/brand.png" width="500" alt="trophoria logo" />
   </a>
 
   <br />
