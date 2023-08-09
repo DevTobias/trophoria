@@ -1,0 +1,8 @@
+{
+  "name": "trophoria",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "app"
+  ]
+}

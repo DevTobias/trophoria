@@ -3,7 +3,7 @@ version: '3'
 tasks:
   build-container:
     cmds:
-      - docker build -f docker/Dockerfile -t devtobias/trophoria .
+      - docker build -f backend/docker/Dockerfile -t devtobias/trophoria backend/app
 
   start-container:
     cmds:

@@ -11,6 +11,7 @@
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
     "package.json": ".gitignore,tsconfig.json",
+    "Taskfile.yml": ".editorconfig,.gitignore",
     "README.md": "LICENSE"
   },
 
