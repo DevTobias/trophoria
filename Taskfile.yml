@@ -1,0 +1,10 @@
+version: '3'
+
+tasks:
+  build-container:
+    cmds:
+      - docker build -f docker/Dockerfile -t devtobias/trophoria .
+
+  start-container:
+    cmds:
+      - docker container run -p 8080:8080 -p devtobias/trophoria
