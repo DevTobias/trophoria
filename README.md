@@ -27,19 +27,6 @@
   </p>
 </div>
 
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#👋-getting-started">Getting Started</a></li>
-    <li><a href="#🧑‍💻-development">Development</a></li>
-    <li><a href="#👥-contributing">Contributing</a></li>
-    <li><a href="#🪲-issue-reporting">Issue Reporting</a></li>
-    <li><a href="#🔓-license">License</a></li>
-    <li><a href="#💌-contact">Contact</a></li>
-  </ol>
-</details>
-
-
 ## 👋 Getting started
 
 Welcome to trophoria! This right here is our main repository which contains the backend and app implementations. 
