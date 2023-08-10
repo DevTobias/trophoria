@@ -33,6 +33,13 @@ module.exports = {
     // readable code.
     "no-return-assign": "off",
 
+    // Airbnb causes issues with file extensions which should be disabled for ts and js files.
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      { "": "never", js: "never", ts: "never" },
+    ],
+
     // Imports should be grouped with spacing and should be alphabetized
     "import/order": [
       "error",

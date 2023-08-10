@@ -18,16 +18,16 @@ RUN /root/.bun/bin/bun install --frozen-lockfile --production
 # Build the project
 COPY tsconfig.json .
 COPY src src
-RUN /root/.bun/bin/bun build src/index.ts --outdir ./out --minify
+RUN /root/.bun/bin/bun build src/server.ts --outdir ./out --minify
 
 #! Copy build outputs and start server
 FROM gcr.io/distroless/base
 WORKDIR /app
 
 COPY --from=builder /root/.bun/bin/bun bun
-COPY --from=builder /build/out/index.js .
+COPY --from=builder /build/out/server.js .
 
 ENV NODE_ENV=production
-CMD ["./bun", "index.js"]
+CMD ["./bun", "server.js"]
 
 EXPOSE 8080
