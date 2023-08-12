@@ -1,4 +1,3 @@
-import * as dotenv from 'dotenv';
 import { z } from 'zod';
 
 export const environmentSchema = z.object({
@@ -10,9 +9,6 @@ export const environmentSchema = z.object({
   PORT: z.string().transform((val) => parseInt(val, 10)),
 });
 
-export type Environment = z.infer<typeof environmentSchema>;
-
-export const loadEnvironment = (path: string): Environment => {
-  dotenv.config({ path });
+export const loadEnvironment = (): z.infer<typeof environmentSchema> => {
   return environmentSchema.parse(process.env);
 };

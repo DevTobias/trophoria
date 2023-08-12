@@ -1,5 +1,5 @@
 #! Install dependencies and build project
-FROM debian:11.6-slim as builder
+FROM debian:bullseye-slim AS builder
 WORKDIR /build
 ENV NODE_ENV=production
 
@@ -10,15 +10,18 @@ RUN curl https://bun.sh/install | bash
 
 # Copy all package metadata
 COPY package.json .
+COPY app/package.json app/
+COPY modules/eslint-config/package.json modules/eslint-config/
+COPY modules/prettier-config/package.json modules/prettier-config/
 COPY bun.lockb .
 
 # Install all dependencies
 RUN /root/.bun/bin/bun install --frozen-lockfile --production
 
 # Build the project
-COPY tsconfig.json .
-COPY src src
-RUN /root/.bun/bin/bun build src/server.ts --outdir ./out --minify
+COPY app app
+COPY modules modules
+RUN /root/.bun/bin/bun build app/src/server.ts --outdir ./out --target bun --minfy
 
 #! Copy build outputs and start server
 FROM gcr.io/distroless/base

@@ -3,8 +3,8 @@ import { pino } from 'pino';
 
 import { loadEnvironment } from '$infrastructure/config';
 
-export const App = (init: { plugins: () => Elysia[]; routes: () => Elysia[]; root: string }) => {
-  const env = loadEnvironment(`${init.root}/.env`);
+export const App = (init: { plugins: () => Elysia[]; routes: () => Elysia[] }) => {
+  const env = loadEnvironment();
 
   const app = new Elysia();
   const logger = pino();

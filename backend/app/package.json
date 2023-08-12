@@ -1,11 +1,10 @@
 {
   "name": "trophoria",
   "scripts": {
-    "start": "bun run --watch src/server.ts",
+    "start": "NODE_ENV=development bun run --watch src/server.ts",
     "lint": "tsc & prettier --ignore-path ../.gitignore --write --check . & eslint ."
   },
   "dependencies": {
-    "dotenv": "^16.3.1",
     "elysia": "^0.6.3",
     "pino": "^8.15.0",
     "zod": "^3.21.4"
