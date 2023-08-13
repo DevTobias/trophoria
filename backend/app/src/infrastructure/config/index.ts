@@ -9,6 +9,8 @@ export const environmentSchema = z.object({
   PORT: z.string().transform((val) => parseInt(val, 10)),
 });
 
-export const loadEnvironment = (): z.infer<typeof environmentSchema> => {
+export type Environment = z.infer<typeof environmentSchema>;
+
+export const loadEnvironment = (): Environment => {
   return environmentSchema.parse(process.env);
 };

@@ -1,23 +1,12 @@
+import cookie from '@elysiajs/cookie';
 import Elysia from 'elysia';
-import { pino } from 'pino';
 
 import { loadEnvironment } from '$infrastructure/config';
+import { errorHandler } from '$infrastructure/webserver/handler/error.handler';
+import { logger } from '$infrastructure/webserver/plugins/logger';
 
-export const App = (init: { plugins: () => Elysia[]; routes: () => Elysia[] }) => {
+export const bootstrap = () => {
   const env = loadEnvironment();
-
-  const app = new Elysia();
-  const logger = pino();
-
-  app.decorate('log', logger);
-
-  const listen = async () => {
-    app.listen({ port: env.PORT, hostname: env.HOST }, ({ hostname, port }) => {
-      logger.info({ msg: `🦊 Elysia is running at ${hostname}:${port}` });
-    });
-
-    return app;
-  };
-
-  return { app, env, listen };
+  const app = new Elysia().decorate('env', env).use(cookie()).use(logger()).use(errorHandler());
+  return { server: app, startup: { port: env.PORT, hostname: env.HOST } };
 };

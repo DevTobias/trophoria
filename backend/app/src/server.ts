@@ -1,6 +1,9 @@
-import { App } from '$infrastructure/webserver';
+import { bootstrap } from '$infrastructure/webserver';
+import { HttpException } from '$infrastructure/webserver/types';
 
-export const app = App({
-  plugins: () => [],
-  routes: () => [],
-}).listen();
+const { server, startup } = bootstrap();
+export const app = server
+  .get('/ping', () => {
+    throw new HttpException('Hello World', 200);
+  })
+  .listen(startup);
