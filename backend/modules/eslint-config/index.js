@@ -61,5 +61,25 @@ module.exports = {
         "newlines-between": "always",
       },
     ],
+
+    // This is the default configuration of the airbnb base rules. However loops got enabled again, because this rule
+    // is outdated and not relevant anymore.
+    'no-restricted-syntax': [
+      'error',
+      {
+        selector: 'LabeledStatement',
+        message: 'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
+      },
+      {
+        selector: 'WithStatement',
+        message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
+      },
+    ],
+
+    // Continue should not be discouraged in some cases, e.g. if its uses like error handling like functions and instant return.
+    "no-continue": "off",
+
+    // Elysia framework encourages the reassign context variables like "set"
+    "no-param-reassign": "off"
   },
 };

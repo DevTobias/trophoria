@@ -6,4 +6,7 @@ export const app = server
   .get('/ping', () => {
     throw new HttpException('Hello World', 200);
   })
+  .get('/', () => {
+    return 'Hello World';
+  })
   .listen(startup);

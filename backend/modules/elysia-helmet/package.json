@@ -1,0 +1,15 @@
+{
+  "name": "@modules/elysia-helmet",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "devDependencies": {
+    "bun-types": "latest",
+    "typescript": "*"
+  },
+  "prettier": "@modules/prettier-config",
+  "eslintConfig": {
+    "extends": [
+      "@modules/eslint-config"
+    ]
+  }
+}

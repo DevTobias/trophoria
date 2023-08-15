@@ -30,7 +30,7 @@
   // ESLint
   "eslint.validate": ["javascript", "typescript"],
   "eslint.probe": ["javascript", "typescript"],
-  "eslint.workingDirectories": ["backend/app"],
+  "eslint.workingDirectories": ["backend/app", "backend/modules/elysia-helmet"],
 
   //! Formatters
   "[json][jsonc][html]": {

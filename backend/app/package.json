@@ -6,6 +6,8 @@
   },
   "dependencies": {
     "@elysiajs/cookie": "^0.6.1",
+    "@elysiajs/cors": "^0.6.0",
+    "@modules/elysia-helmet": "^1.0.0",
     "elysia": "^0.6.3",
     "pino": "^8.15.0",
     "zod": "^3.21.4"
