@@ -16,6 +16,10 @@
     "noEmit": true,
     "types": ["bun-types"],
     "baseUrl": ".",
-    "paths": { "$*": ["src/*"] }
+    "paths": {
+      "$database": ["src/infrastructure/database"],
+      "$database/*": ["src/infrastructure/database/*"],
+      "$*": ["src/*"]
+    }
   }
 }

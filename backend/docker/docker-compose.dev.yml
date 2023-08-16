@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:alpine
+    restart: unless-stopped
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_DB}
+    networks:
+      - trophoria-network
+    volumes:
+      - database:/data/postgres
+
+networks:
+  trophoria-network:
+    driver: bridge
+
+volumes:
+  database:
+    driver: local

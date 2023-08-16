@@ -7,4 +7,8 @@ tasks:
 
   start-container:
     cmds:
-      - docker run --env-file backend/app/.env -p 8080:8080 devtobias/trophoria
+      - docker run --env-file backend/app/.env.development -p 8080:8080 devtobias/trophoria
+
+  setup-development:
+    cmds:
+      - docker compose -f  backend/docker/docker-compose.dev.yml --env-file backend/app/.env.development -p trophoria-dev up -d
