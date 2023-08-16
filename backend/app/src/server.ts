@@ -1,13 +1,11 @@
-import { users } from '$database/schema/users';
+import { UserDatabaseService } from '$application/use_cases/user/user.database.service';
 import { bootstrap } from '$infrastructure/webserver';
-import { HttpException } from '$infrastructure/webserver/types';
+import { httpException } from '$infrastructure/webserver/types';
 
 const { server, startup } = bootstrap();
 export const app = server
-  .get('/ping', () => {
-    throw new HttpException('Hello World', 200);
-  })
-  .get('/', ({ db }) => {
-    return db.select().from(users).execute();
-  })
+  .get('/ping', () => httpException('Hello World', 200))
+  .get('/', ({ resolve }) =>
+    resolve(UserDatabaseService).create({ email: 'test@gmx.de', password: 'test4', username: 'test1' })
+  )
   .listen(startup);

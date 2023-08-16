@@ -9,6 +9,7 @@
   "dependencies": {
     "@elysiajs/cookie": "^0.6.1",
     "@elysiajs/cors": "^0.6.0",
+    "@freshgum/typedi": "^0.3.23",
     "drizzle-orm": "^0.28.2",
     "elysia": "^0.6.3",
     "pino": "^8.15.0",

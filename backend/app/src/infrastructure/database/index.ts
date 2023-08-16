@@ -1,7 +1,10 @@
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 
+export * from '$database/schema/users';
+
 export const createDatabaseConnection = (url: string) => {
-  const queryClient = postgres(url);
-  return drizzle(queryClient);
+  return drizzle(postgres(url));
 };
+
+export type Database = ReturnType<typeof createDatabaseConnection>;

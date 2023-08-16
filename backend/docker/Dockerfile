@@ -13,6 +13,7 @@ COPY package.json .
 COPY app/package.json app/
 COPY modules/eslint-config/package.json modules/eslint-config/
 COPY modules/prettier-config/package.json modules/prettier-config/
+COPY modules/elysia-helmet/package.json modules/elysia-helmet/
 COPY bun.lockb .
 
 # Install all dependencies

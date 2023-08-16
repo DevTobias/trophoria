@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "3c609e6d-e44c-4419-aedb-3f5e80d40bc3",
+  "id": "a2169bda-dc35-4974-a2b1-7705509e01b7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "users": {
@@ -31,7 +31,8 @@
           "name": "tokens",
           "type": "text[]",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": "'{}'"
         },
         "created_at": {
           "name": "created_at",

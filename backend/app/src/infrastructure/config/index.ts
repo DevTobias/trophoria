@@ -12,7 +12,7 @@ export const environmentSchema = z.object({
   DATABASE_URL: z.string().min(1),
 });
 
-interface Environment extends z.infer<typeof environmentSchema> {
+export interface Environment extends z.infer<typeof environmentSchema> {
   IS_DEV: boolean;
 }
 
