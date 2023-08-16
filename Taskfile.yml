@@ -1,14 +1,24 @@
 version: '3'
 
 tasks:
-  build-container:
+  default:
     cmds:
-      - docker build -f backend/docker/Dockerfile -t devtobias/trophoria backend
+      - task --list
 
-  start-container:
+  run:
+    desc: Runs the script with the provided name (clean, upgrade, install)
     cmds:
-      - docker run --env-file backend/app/.env.development -p 8080:8080 devtobias/trophoria
+      - sh scripts/{{.CLI_ARGS}}.sh
 
-  setup-development:
+  backend:
+    desc: Builds or starts the backend inside of a container - [build|start]
     cmds:
+      - if [ {{.CLI_ARGS}} = build ]; then docker build -f backend/docker/Dockerfile -t devtobias/trophoria backend; fi
+      - if [ {{.CLI_ARGS}} = start ]; then docker run --env-file backend/app/.env.development -p 8080:8080 devtobias/trophoria; fi
+
+  setup:
+    desc: Setups the complete dev environment (installing dependencies, bootstrapping the database)
+    cmds:
+      - sh scripts/install.sh
       - docker compose -f  backend/docker/docker-compose.dev.yml --env-file backend/app/.env.development -p trophoria-dev up -d
+      - cd backend/app && bun drizzle:migrate

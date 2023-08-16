@@ -11,10 +11,10 @@
     "@elysiajs/cors": "^0.6.0",
     "@freshgum/typedi": "^0.3.23",
     "drizzle-orm": "^0.28.2",
-    "elysia": "^0.6.3",
+    "elysia": "^0.6.10",
     "pino": "^8.15.0",
     "postgres": "^3.3.5",
-    "zod": "^3.21.4"
+    "zod": "^3.22.1"
   },
   "devDependencies": {
     "bun-types": "latest",
