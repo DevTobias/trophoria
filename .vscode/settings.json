@@ -10,7 +10,7 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
-    "package.json": ".gitignore,tsconfig.json,.env.development",
+    "package.json": ".gitignore,tsconfig.json,.env.development,drizzle.config.ts",
     "Taskfile.yml": ".editorconfig,.gitignore",
     "README.md": "LICENSE"
   },
