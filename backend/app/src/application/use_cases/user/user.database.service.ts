@@ -2,9 +2,8 @@ import { Service } from '@freshgum/typedi';
 import { and, eq, ne, or, sql } from 'drizzle-orm';
 
 import { UserService } from '$application/use_cases/user/_user.service';
-import { Database, user } from '$database';
+import { CreateUser, Database, user } from '$database';
 import { first, onUndefined } from '$database/extension';
-import { CreateUserInterface } from '$domain/user.interface';
 import { DATABASE } from '$infrastructure/webserver';
 import { HTTP, httpException } from '$infrastructure/webserver/types';
 
@@ -12,7 +11,7 @@ import { HTTP, httpException } from '$infrastructure/webserver/types';
 export class UserDatabaseService implements UserService {
   constructor(private db: Database) {}
 
-  create = async (payload: CreateUserInterface) => {
+  create = async (payload: CreateUser) => {
     return first(this.db.insert(user).values(payload).returning(), () =>
       httpException('user with this email or username already exists', HTTP.CONFLICT)
     );

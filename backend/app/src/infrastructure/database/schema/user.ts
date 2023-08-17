@@ -14,4 +14,5 @@ export const user = pgTable('user', {
 });
 
 export type User = InferModel<typeof user>;
+export type CreateUser = Omit<InferModel<typeof user, 'insert'>, 'createdAt' | 'id' | 'tokens'>;
 export type PublicUser = Omit<User, 'password' | 'tokens'>;

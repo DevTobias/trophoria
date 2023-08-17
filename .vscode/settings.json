@@ -12,7 +12,8 @@
   "explorer.fileNesting.patterns": {
     "package.json": ".gitignore,tsconfig.json,.env.development,drizzle.config.ts",
     "Taskfile.yml": ".editorconfig,.gitignore",
-    "README.md": "LICENSE"
+    "README.md": "LICENSE",
+    "index.ts": "migrate.ts,extension.ts"
   },
 
   // Exclude useless files from explorer

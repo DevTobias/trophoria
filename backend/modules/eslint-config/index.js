@@ -80,6 +80,9 @@ module.exports = {
     "no-continue": "off",
 
     // Elysia framework encourages the reassign context variables like "set"
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+
+    // This does not work with buns workspace dependencies
+    "import/no-extraneous-dependencies": "off"
   },
 };

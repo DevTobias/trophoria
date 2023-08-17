@@ -1,5 +1,4 @@
-import { User } from '$database';
-import { CreateUserInterface } from '$domain/user.interface';
+import { CreateUser, User } from '$database';
 
 export interface UserService {
   /**
@@ -10,7 +9,7 @@ export interface UserService {
    * @throws      {@link HttpException} if username or email already exists
    * @returns     The created database user
    */
-  create: (payload: CreateUserInterface) => Promise<User>;
+  create: (payload: CreateUser) => Promise<User>;
 
   /**
    * Find an {@link User} by it's id. If no user with the provided
