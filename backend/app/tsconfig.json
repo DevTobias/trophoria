@@ -33,6 +33,7 @@
     "paths": {
       "$database": ["./src/infrastructure/database"],
       "$database/*": ["./src/infrastructure/database/*"],
+      "$lib/*": ["./lib/*"],
       "$*": ["./src/*"]
     }
   }

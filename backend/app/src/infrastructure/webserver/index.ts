@@ -1,10 +1,10 @@
-import cookie from '@elysiajs/cookie';
 import { Container, ServiceIdentifier, Token } from '@freshgum/typedi';
 import Elysia from 'elysia';
 
-import { createDatabaseConnection, Database } from '$database';
+import { createDatabaseConnection, Database, User } from '$database';
 import { Environment, loadEnvironment } from '$infrastructure/config';
 import { errorHandler } from '$infrastructure/webserver/handler/error.handler';
+import { cookie } from '$infrastructure/webserver/plugins/cookie';
 import { cors } from '$infrastructure/webserver/plugins/cors';
 import { helmet } from '$infrastructure/webserver/plugins/helmet';
 import { logger } from '$infrastructure/webserver/plugins/logger';
@@ -24,8 +24,9 @@ export const bootstrap = () => {
   const setup = new Elysia()
     .decorate('env', env)
     .decorate('db', db)
+    .decorate('user', null as User | null)
+    .use(cookie(env.IS_DEV))
     .use(logger())
-    .use(cookie())
     .use(cors())
     .use(helmet())
     .use(errorHandler());
@@ -34,6 +35,11 @@ export const bootstrap = () => {
 };
 
 export type Setup = ReturnType<typeof bootstrap>['setup'];
+
 export type Handler<T> = (
   ctx: Parameters<Parameters<ReturnType<typeof bootstrap>['setup']['get']>[1]>[0] & { body: T }
-) => Response | Promise<Response>;
+) => Response | Promise<Response> | object | string;
+
+export type Guard<T> = (
+  ctx: Parameters<Parameters<ReturnType<typeof bootstrap>['setup']['get']>[1]>[0] & { body: T }
+) => void;

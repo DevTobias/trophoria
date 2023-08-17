@@ -1,3 +1,5 @@
+import '$lib/utils/array';
+
 import { bootstrap } from '$infrastructure/webserver';
 import { authRoutes } from '$interface/routes/auth.route';
 

@@ -10,6 +10,16 @@ export const environmentSchema = z.object({
 
   // Database configuration
   DATABASE_URL: z.string().min(1),
+
+  // Authentication token config
+  JWT_ISSUER: z.string().min(1),
+  JWT_AUDIENCE: z.string().min(1),
+  JWT_PRIVATE_KEY: z.string().min(1),
+  JWT_PUBLIC_KEY: z.string().min(1),
+  JWT_EXPIRES_IN: z.string().min(1),
+  JWT_REFRESH_PRIVATE_KEY: z.string().min(1),
+  JWT_REFRESH_PUBLIC_KEY: z.string().min(1),
+  JWT_REFRESH_EXPIRES_IN: z.string().min(1),
 });
 
 export interface Environment extends z.infer<typeof environmentSchema> {

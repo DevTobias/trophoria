@@ -3,9 +3,9 @@ import { and, eq, ne, or, sql } from 'drizzle-orm';
 
 import { UserService } from '$application/use_cases/user/_user.service';
 import { CreateUser, Database, user } from '$database';
-import { first, onUndefined } from '$database/extension';
 import { DATABASE } from '$infrastructure/webserver';
 import { HTTP, httpException } from '$infrastructure/webserver/types';
+import { first, onUndefined } from '$lib/utils/promise';
 
 @Service([DATABASE])
 export class UserDatabaseService implements UserService {
@@ -26,7 +26,7 @@ export class UserDatabaseService implements UserService {
   findByEmailOrUsername = async (identifier: string) => {
     return onUndefined(
       this.db.query.user.findFirst({ where: or(eq(user.email, identifier), eq(user.username, identifier)) }),
-      () => httpException('user with this id does not exist', HTTP.NOT_FOUND)
+      () => httpException('user with this identifier does not exist', HTTP.NOT_FOUND)
     );
   };
 
@@ -44,8 +44,6 @@ export class UserDatabaseService implements UserService {
 
     if (alreadyAssigned) httpException('token already assigned', HTTP.BAD_REQUEST);
 
-    return first(this.db.update(user).set({ tokens }).where(eq(user.id, id)), () =>
-      httpException('user with this id does not exist', HTTP.NOT_FOUND)
-    );
+    return first(this.db.update(user).set({ tokens }).returning().where(eq(user.id, id)));
   };
 }

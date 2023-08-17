@@ -22,3 +22,11 @@ tasks:
       - sh scripts/install.sh
       - docker compose -f  backend/docker/docker-compose.dev.yml --env-file backend/app/.env.development -p trophoria-dev up -d
       - cd backend/app && bun drizzle:migrate
+
+  generate-key-pair:
+    desc: Generates a RSA private and public key pair for the backend
+    cmds:
+      - openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
+      - openssl rsa -pubout -in private.pem -out public_key.pem
+      - openssl pkcs8 -topk8 -in private.pem -nocrypt -out private_key.pem
+      - rm private.pem
