@@ -21,7 +21,9 @@ export const bootstrap = () => {
   Container.set({ id: DATABASE, value: db, dependencies: [] });
   Container.set({ id: ENVIRONMENT, value: env, dependencies: [] });
 
-  const setup = new Elysia()
+  const app = new Elysia();
+
+  const setup = app
     .decorate('env', env)
     .decorate('db', db)
     .decorate('user', null as User | null)
@@ -31,15 +33,15 @@ export const bootstrap = () => {
     .use(helmet())
     .use(errorHandler());
 
-  return { setup, startup: { port: env.PORT, hostname: env.HOST } };
+  return { app, setup: () => setup, startup: { port: env.PORT, hostname: env.HOST } };
 };
 
-export type Setup = ReturnType<typeof bootstrap>['setup'];
+export type Setup = ReturnType<ReturnType<typeof bootstrap>['setup']>;
+export type SetupHandler = () => Setup;
+export type App = Elysia;
 
 export type Handler<T> = (
-  ctx: Parameters<Parameters<ReturnType<typeof bootstrap>['setup']['get']>[1]>[0] & { body: T }
+  ctx: Parameters<Parameters<Setup['get']>[1]>[0] & { body: T }
 ) => Response | Promise<Response> | object | string;
 
-export type Guard<T> = (
-  ctx: Parameters<Parameters<ReturnType<typeof bootstrap>['setup']['get']>[1]>[0] & { body: T }
-) => void;
+export type Guard<T> = (ctx: Parameters<Parameters<Setup['get']>[1]>[0] & { body: T }) => void;
