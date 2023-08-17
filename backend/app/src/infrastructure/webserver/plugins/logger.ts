@@ -5,10 +5,9 @@ export const logger = () => {
   const instance = pino();
   return new Elysia({ name: 'elysia-logger' })
     .decorate('log', instance)
-    .on('request', ({ log, request }) => {
+    .on('request', async ({ log, request }) => {
       log.info({
         route: `[${request.method}]`.padEnd(8) + new URL(request.url).pathname,
-        ...(request.body && { body: request.body }),
         ...(request.headers && { headers: request.headers }),
       });
     })

@@ -12,6 +12,8 @@ import { logger } from '$infrastructure/webserver/plugins/logger';
 export const DATABASE = new Token<Database>();
 export const ENVIRONMENT = new Token<Environment>();
 
+export const resolve = <T>(identifier: ServiceIdentifier<T>) => Container.get(identifier);
+
 export const bootstrap = () => {
   const env = loadEnvironment();
   const db = createDatabaseConnection(env.DATABASE_URL);
@@ -19,15 +21,19 @@ export const bootstrap = () => {
   Container.set({ id: DATABASE, value: db, dependencies: [] });
   Container.set({ id: ENVIRONMENT, value: env, dependencies: [] });
 
-  const app = new Elysia()
+  const setup = new Elysia()
     .decorate('env', env)
     .decorate('db', db)
-    .decorate('resolve', <T>(identifier: ServiceIdentifier<T>) => Container.get(identifier))
     .use(logger())
     .use(cookie())
     .use(cors())
     .use(helmet())
     .use(errorHandler());
 
-  return { server: app, startup: { port: env.PORT, hostname: env.HOST } };
+  return { setup, startup: { port: env.PORT, hostname: env.HOST } };
 };
+
+export type Setup = ReturnType<typeof bootstrap>['setup'];
+export type Handler<T> = (
+  ctx: Parameters<Parameters<ReturnType<typeof bootstrap>['setup']['get']>[1]>[0] & { body: T }
+) => Response | Promise<Response>;

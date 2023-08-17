@@ -1,12 +1,9 @@
 export * from './http';
 
-export const HttpResponse = (msg: object | string, options: { status?: number; headers?: HeadersInit }) => {
+export const HttpResponse = (msg: object | string, options: { status?: number; headers?: HeadersInit } = {}) => {
   return new Response(
-    typeof msg === 'string' ? msg : JSON.stringify({ ...msg, ...(options.status && { status: options.status }) }),
-    {
-      ...options,
-      headers: { ...options.headers, 'Content-Type': 'application/json' },
-    }
+    typeof msg === 'string' ? msg : JSON.stringify({ ...msg, ...{ status: options.status ?? 200 } }),
+    { ...options, headers: { ...options.headers, 'Content-Type': 'application/json' } }
   );
 };
 

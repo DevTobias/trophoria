@@ -1,5 +1,5 @@
 import { User } from '$database';
-import { CreateUserInterface } from '$domain/interface/user.interface';
+import { CreateUserInterface } from '$domain/user.interface';
 
 export interface UserService {
   /**
