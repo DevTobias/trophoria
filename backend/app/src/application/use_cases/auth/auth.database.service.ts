@@ -89,18 +89,17 @@ export class AuthDatabaseService implements AuthService {
       return httpException('invalid refresh token', HTTP.FORBIDDEN);
     }
 
+    // If the token was found in database and was a valid jwt token, it means
+    // that the token expired. In this case remove the token from database.
     try {
-      AuthToken.verify(refreshToken, this.env.JWT_REFRESH_PUBLIC_KEY);
+      await AuthToken.verify(refreshToken, this.env.JWT_REFRESH_PUBLIC_KEY);
     } catch (_) {
-      // If the token was found in database and was a valid jwt token, it means
-      // that the token expired. In this case remove the token from database.
       return httpException('invalid refresh token', HTTP.FORBIDDEN);
-    } finally {
-      // At this point everything was ok. No reuse was detected and the token was
-      // valid and not expired. Return the user object to create a new token pair.
-      // eslint-disable-next-line no-unsafe-finally
-      return this.userService.persistTokens(foundUser.id, foundUser.tokens.remove(decoded.jti as string));
     }
+
+    // At this point everything was ok. No reuse was detected and the token was
+    // valid and not expired. Return the user object to create a new token pair.
+    return this.userService.persistTokens(foundUser.id, foundUser.tokens.remove(decoded.jti as string));
   };
 
   refreshToken = async ({ id, tokens }: User) => {

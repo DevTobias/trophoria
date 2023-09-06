@@ -38,9 +38,7 @@ export class UserDatabaseService implements UserService {
   };
 
   persistTokens = async (id: string, tokens: string[]) => {
-    const tokenFilter = `{${tokens.map((token) => `${token}`).join(',')}}`;
-
-    const tokenExistsQuery = and(ne(user.id, id), sql`${user.tokens} && ${tokenFilter}`);
+    const tokenExistsQuery = and(ne(user.id, id), sql`${user.tokens} && ${tokens.join(',')}`);
     const alreadyAssigned = await this.db.select().from(user).where(tokenExistsQuery);
 
     if (alreadyAssigned.length > 0) httpException('token already assigned', HTTP.BAD_REQUEST);

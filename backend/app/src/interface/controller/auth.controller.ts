@@ -10,8 +10,9 @@ import { Handler } from '$infrastructure/webserver';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  signUp: Handler<SignUpInterface> = async ({ body }) => {
+  signUp: Handler<SignUpInterface> = async ({ body, setCookie }) => {
     const res = await this.authService.signUp(body);
+    setCookie('REFRESH', `${res.refreshToken}`);
     return { ...res, user: mapUser(res.user) };
   };
 
