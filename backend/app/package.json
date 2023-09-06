@@ -3,6 +3,7 @@
   "scripts": {
     "start": "NODE_ENV=development bun run --watch src/server.ts | pino-pretty -i route,headers -o \"{route}\"",
     "lint": "tsc & prettier --ignore-path ../.gitignore --write --check . & eslint .",
+    "build": "bun build src/server.ts --outdir ./out --target bun --minify",
     "drizzle:migrate": "NODE_ENV=development bun run src/infrastructure/database/migrate.ts",
     "drizzle:generate": "drizzle-kit generate:pg --schema=src/infrastructure/database/schema/* --out=src/infrastructure/database/migrations"
   },
