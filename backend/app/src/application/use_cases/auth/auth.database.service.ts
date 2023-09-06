@@ -20,7 +20,9 @@ export class AuthDatabaseService implements AuthService {
 
   signUp = async (payload: SignUpInterface) => {
     const password = await PasswordHash.hash(payload.password);
-    return this.userService.create({ ...payload, password });
+    const createdUser = await this.userService.create({ ...payload, password });
+    const signInPayload = await this.signIn(createdUser);
+    return { user: createdUser, ...signInPayload };
   };
 
   signIn = async ({ id, tokens }: User, refresh?: string) => {

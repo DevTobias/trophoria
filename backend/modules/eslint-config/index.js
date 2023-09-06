@@ -83,6 +83,9 @@ module.exports = {
     "no-param-reassign": "off",
 
     // This does not work with buns workspace dependencies
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+
+    // Console messages may be useful on scripts etc.
+    "no-console": "off"
   },
 };

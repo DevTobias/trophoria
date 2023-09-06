@@ -1,1 +1,1 @@
-bunx npm-check-updates --workspaces --root --cwd backend -u
+bunx npm-check-updates --workspaces --root --cwd backend -u & wait

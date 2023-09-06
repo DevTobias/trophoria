@@ -1,11 +1,11 @@
 version: '3'
 
 services:
-  postgres:
+  database:
     image: postgres:alpine
     restart: unless-stopped
     ports:
-      - ${DATABASE_PORT}:${DATABASE_PORT}
+      - ${DATABASE_PORT}:5432
     environment:
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
@@ -13,12 +13,12 @@ services:
     networks:
       - trophoria-network
     volumes:
-      - database:/data/postgres
+      - postgres-data:/data/postgres
 
 networks:
   trophoria-network:
     driver: bridge
 
 volumes:
-  database:
+  postgres-data:
     driver: local

@@ -6,8 +6,6 @@ export const userRoutes = (setup: SetupHandler) => (app: App) => {
   const authHooks = resolve(AuthHooks);
 
   return app.use(setup).group('/user', (group) => {
-    return group.get('/', UserController.getUser, {
-      beforeHandle: authHooks.tokenAuth,
-    });
+    return group.get('/', UserController.getUser, { beforeHandle: authHooks.tokenAuth });
   });
 };

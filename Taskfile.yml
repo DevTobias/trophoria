@@ -10,23 +10,14 @@ tasks:
     cmds:
       - sh scripts/{{.CLI_ARGS}}.sh
 
-  backend:
-    desc: Builds or starts the backend inside of a container - [build|start]
-    cmds:
-      - if [ {{.CLI_ARGS}} = build ]; then docker build -f backend/docker/Dockerfile -t devtobias/trophoria backend; fi
-      - if [ {{.CLI_ARGS}} = start ]; then docker run --env-file backend/app/.env.development -p 8080:8080 devtobias/trophoria; fi
-
   setup:
-    desc: Setups the complete dev environment (installing dependencies, bootstrapping the database)
+    desc: Starts the required docker services & seeds the database
     cmds:
-      - sh scripts/install.sh
       - docker compose -f  backend/docker/docker-compose.dev.yml --env-file backend/app/.env.development -p trophoria-dev up -d
+      - sleep 5
       - cd backend/app && bun drizzle:migrate
 
-  generate-key-pair:
-    desc: Generates a RSA private and public key pair for the backend
+  stop:
+    desc: Stops the dev environment
     cmds:
-      - openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
-      - openssl rsa -pubout -in private.pem -out public_key.pem
-      - openssl pkcs8 -topk8 -in private.pem -nocrypt -out private_key.pem
-      - rm private.pem
+      - docker compose -f  backend/docker/docker-compose.dev.yml --env-file backend/app/.env.development -p trophoria-dev down

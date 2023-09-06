@@ -11,7 +11,8 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   signUp: Handler<SignUpInterface> = async ({ body }) => {
-    return mapUser(await this.authService.signUp(body));
+    const res = await this.authService.signUp(body);
+    return { ...res, user: mapUser(res.user) };
   };
 
   signIn: Handler<SignInInterface> = async ({ user, cookie, setCookie }) => {

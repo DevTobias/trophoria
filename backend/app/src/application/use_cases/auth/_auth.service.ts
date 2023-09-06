@@ -11,7 +11,7 @@ export interface AuthService {
    * @throws      {@link HttpException} if username or email already exists
    * @returns     The freshly created user
    */
-  signUp: (payload: SignUpInterface) => Promise<User>;
+  signUp: (payload: SignUpInterface) => Promise<{ user: User } & TokenInterface>;
 
   /**
    * Signs in the provided user. This means generating a new

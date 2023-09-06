@@ -10,7 +10,7 @@
   <br />
 
   <p align="center">
-    Open source playstation trophy platform with modern design wich aims to fit the needs of every passionate trophy hunter.
+    Open source PlayStation trophy platform with modern design wich aims to fit the needs of every passionate trophy hunter.
     <br />
     <a href="https://github.com/devtobias/trophoria"><strong>« Explore the docs »</strong></a>
     <br />
@@ -29,7 +29,7 @@
 
 ## 👋 Getting started
 
-Welcome to trophoria! This right here is our main repository which contains the backend and app implementations. 
+Welcome to trophoria! This right here is our main repository which contains the backend and app implementations.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -48,7 +48,7 @@ If you have a suggestion that would make this project better, please fork the re
 - [Code of Conduct](.github/CODE_OF_CONDUCT.md)
 - [Contributing Guidelines](.github/CONTRIBUTING.md)
 
-You can also take a look at the already linked wiki pages to find a few guides on how to work with the repository technologies and so on. We also included a pull request template which includes a pretty large checklist of things, you should already fulfill before creating a merge request, to keep the review time as small as possible! 
+You can also take a look at the already linked wiki pages to find a few guides on how to work with the repository technologies and so on. We also included a pull request template which includes a pretty large checklist of things, you should already fulfill before creating a merge request, to keep the review time as small as possible!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

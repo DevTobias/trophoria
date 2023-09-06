@@ -4,26 +4,23 @@
     "start": "NODE_ENV=development bun run --watch src/server.ts | pino-pretty -i route,headers -o \"{route}\"",
     "lint": "tsc & prettier --ignore-path ../.gitignore --write --check . & eslint .",
     "drizzle:migrate": "NODE_ENV=development bun run src/infrastructure/database/migrate.ts",
-    "drizzle:generate": "drizzle-kit generate:pg",
-    "drizzle:studio": "drizzle-kit studio"
+    "drizzle:generate": "drizzle-kit generate:pg --schema=src/infrastructure/database/schema/* --out=src/infrastructure/database/migrations"
   },
   "dependencies": {
     "@elysiajs/cookie": "^0.6.1",
     "@elysiajs/cors": "^0.6.0",
-    "@freshgum/typedi": "^0.3.23",
-    "bcryptjs": "^2.4.3",
-    "drizzle-orm": "^0.28.2",
-    "elysia": "^0.6.10",
-    "jose": "^4.14.4",
+    "@freshgum/typedi": "^0.3.24",
+    "drizzle-orm": "^0.28.6",
+    "elysia": "^0.6.17",
+    "elysia-helmet": "1.0.1",
+    "jose": "^4.14.6",
     "pino": "^8.15.0",
     "postgres": "^3.3.5",
-    "zod": "^3.22.1"
+    "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.2",
     "bun-types": "latest",
-    "drizzle-kit": "^0.19.12",
-    "pg": "^8.11.2",
+    "drizzle-kit": "^0.19.13",
     "pino-pretty": "^10.2.0"
   },
   "prettier": "@modules/prettier-config",

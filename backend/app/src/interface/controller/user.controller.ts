@@ -6,7 +6,5 @@ import { Handler } from '$infrastructure/webserver';
 
 @Service([UserDatabaseService])
 export class UserController {
-  static getUser: Handler<unknown> = async ({ user }) => {
-    return mapUser(user!);
-  };
+  static getUser: Handler<unknown> = async ({ user }) => mapUser(user!);
 }

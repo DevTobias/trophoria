@@ -1,12 +1,12 @@
 import { Container, ServiceIdentifier, Token } from '@freshgum/typedi';
 import Elysia from 'elysia';
+import { helmet } from 'elysia-helmet';
 
 import { createDatabaseConnection, Database, User } from '$database';
 import { Environment, loadEnvironment } from '$infrastructure/config';
 import { errorHandler } from '$infrastructure/webserver/handler/error.handler';
 import { cookie } from '$infrastructure/webserver/plugins/cookie';
 import { cors } from '$infrastructure/webserver/plugins/cors';
-import { helmet } from '$infrastructure/webserver/plugins/helmet';
 import { logger } from '$infrastructure/webserver/plugins/logger';
 
 export const DATABASE = new Token<Database>();
