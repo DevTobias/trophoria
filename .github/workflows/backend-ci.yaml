@@ -32,9 +32,9 @@ jobs:
         run: bun install
 
       - name: Lint the repository
-        working-directory: app
+        working-directory: backend/app
         run: bun run lint
 
       - name: Build the backend
-        working-directory: app
+        working-directory: backend/app
         run: bun run build
